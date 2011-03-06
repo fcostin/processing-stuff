@@ -31,6 +31,17 @@ coffee_draw = (p5) ->
 			beads = my_bdd.beads,
 			all_counts = true,
 		)
+
+		random_solution = bdd.random_solution(
+			root = my_bdd.root,
+			beads = my_bdd.beads,
+			c = @counts
+		)
+		@cells = make_cells(
+			n = my_grid.n,
+			passages = my_grid.passages,
+			edges = random_solution,
+		)
 		
 		@counts = counts
 
