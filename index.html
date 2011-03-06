@@ -2,17 +2,55 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title>hello world</title>
+	<title>Maze Generation with BDDs</title>
+	<link rel="stylesheet" href="style.css" type = "text/css">
 </head>
 <body>
-	<div id="container">
-		<header>
-		</header>
-		<div id="main">
+	<div id="container" class="text">
+		<h1> Maze Generation with Binary Decision Diagrams</h1>
+		<div id="main" class="figure">
 			<canvas id="processing" width="264" height="264"></canvas>
 		</div>
-		<footer>
-		</footer>
+		<p>
+			This is a toy application of binary decision diagrams (BDDs) in order to generate random mazes.
+			Suppose we have a BDD representing the connectedness function of subgraphs of a 5 by 5 grid of rooms.
+			Then, Knuth's algorithm C lets us count how many solutions exist.
+			For our chosen BDD, each solution is a connected subgraph, that is, a selection of passages such that paths exist between all pairs of rooms.
+			Knuth describes a simple procedure that uses information computed during algorithm C
+			to generate random solutions of the BDD. Putting this all together lets us generate random mazes. Easy, right?
+		</p>
+		<p>
+			Funnily enough, the reason why it's simplest to suppose the existence of such a BDD explains why this is only a toy application.
+			Manufacturing the connectedness BDD in the first place requires a substantial investment of effort. In fact, this effort required seems to explode horrifically in the size of the grid.
+			The precession of random mazes of the 5 by 5 grid shown above is the largest grid I've been able to handle to date. I've generated a few Knuth-style BDD graphs using
+			<a href="http://www.graphviz.org">graphviz</a>, see <a href="images/beads-3.gv.png">here</a> for an example of a BDD for the size 3 by 3 grid, consisting of 38 beads,
+			including the two sinks.
+		</p>
+		<p>
+			<h2>Code</h2>
+			<ul>
+				<li>this demo: see <a href="http://github.com/fcostin/processing-stuff">coffeescript source, on github</a></li>
+				<li>but how to generate the BDD in the first place? see <a href="http://github.com/fcostin/toy_bdd">python source, on github</a> (almost certainly buggy)</li>
+			</ul>		
+		</p>
+			<h2>References</h2>
+			<ul>
+				<li>
+					Knuth's The Art of Computer Programming, Volume 4 Fascicle 1. See 
+					<a href="http://www-cs-faculty.stanford.edu/~uno/taocp.html">TAOCP</a>,
+					<a href="http://www.amazon.com/Art-Computer-Programming-Fascicle-Techniques/dp/0321580508">Amazon</a>.
+				</li>
+				<li>
+					David Guttman's <a href="http://dry.ly/2011/02/21/coffeescript--processingjs--crazy-delicious">CoffeeScript and Processing.js tutorial</a>.
+				</li>
+				<li>
+					<a href="http://processingjs.org/">Processing.js</a>
+				</li>
+				<li>
+					<a href="http://jashkenas.github.com/coffee-script/">CoffeeScript</a>
+				</li>
+			</ul>
+		</p>
 	</div>
 	<script src="js/libs/jquery-1.5.1.min.js"></script>
 	<script src="js/libs/underscore.min.js"></script>
