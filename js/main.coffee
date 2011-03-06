@@ -31,7 +31,7 @@ coffee_draw = (p5) ->
 			beads = my_bdd.beads,
 			all_counts = true,
 		)
-
+		@counts = counts
 		random_solution = bdd.random_solution(
 			root = my_bdd.root,
 			beads = my_bdd.beads,
@@ -43,7 +43,6 @@ coffee_draw = (p5) ->
 			edges = random_solution,
 		)
 		
-		@counts = counts
 
 	p5.draw = () ->
 		if p5.frameCount % 20 == 0
