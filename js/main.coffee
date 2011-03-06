@@ -45,7 +45,7 @@ coffee_draw = (p5) ->
 		
 
 	p5.draw = () ->
-		if p5.frameCount % 20 == 0
+		if p5.frameCount % 100 == 0
 			random_solution = bdd.random_solution(
 				root = my_bdd.root,
 				beads = my_bdd.beads,
@@ -59,7 +59,7 @@ coffee_draw = (p5) ->
 
 		draw_cell = ([i, j, x]) ->
 			grey = if x then 255 else 50
-			p5.fill(grey, grey, grey, 25)
+			p5.fill(grey, grey, grey, 20)
 			# alert "draw tile #{i} #{j} #{x}"
 			s = 24
 			p5.rect(i * s, j * s, s, s)
