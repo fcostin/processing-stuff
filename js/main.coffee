@@ -24,7 +24,7 @@ coffee_draw = (p5) ->
 	p5.setup = () ->
 		p5.size(264, 264)
 		p5.background(0)
-		p5.frameRate(1)
+		p5.frameRate(20)
 
 		[n_solns, counts] = bdd.count_solutions(
 			root = my_bdd.root,
@@ -35,26 +35,26 @@ coffee_draw = (p5) ->
 		@counts = counts
 
 	p5.draw = () ->
-
-		random_solution = bdd.random_solution(
-			root = my_bdd.root,
-			beads = my_bdd.beads,
-			c = @counts
-		)
-
-		cells = make_cells(
-			n = my_grid.n,
-			passages = my_grid.passages,
-			edges = random_solution,
-		)
+		if p5.frameCount % 20 == 0
+			random_solution = bdd.random_solution(
+				root = my_bdd.root,
+				beads = my_bdd.beads,
+				c = @counts
+			)
+			@cells = make_cells(
+				n = my_grid.n,
+				passages = my_grid.passages,
+				edges = random_solution,
+			)
 
 		draw_cell = ([i, j, x]) ->
-			p5.fill(if x then 255 else 50)
+			grey = if x then 255 else 50
+			p5.fill(grey, grey, grey, 25)
 			# alert "draw tile #{i} #{j} #{x}"
 			s = 24
 			p5.rect(i * s, j * s, s, s)
 		
-		draw_cell c for c in cells
+		draw_cell c for c in @cells
 
 $(document).ready ->
 	canvas = document.getElementById("processing")
